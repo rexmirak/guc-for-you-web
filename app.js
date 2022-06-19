@@ -16,11 +16,13 @@ function calculateGPA(courseList) {
   // GPA and grade                //
   //////////////////////////////////
 
-  let totalHours = 0;
-  let totalPts = 0;
+  let totalHours = 0; //total hours in the list
+  let totalPts = 0; //total points in the list
   for (let i = 0; i < courseList.length; i++) {
     totalHours += courseList[i].CHours;
+    //summing the total hours
     totalPts += courseList[i].CPts * courseList[i].CHours;
+    //each course points = individual grade points * credit hours of the course and adding them together
   }
   return totalPts / totalHours;
 }
