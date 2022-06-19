@@ -6,6 +6,8 @@ let alby =
   "ninz's life and existence makes it not rotten and void, please stay cus you are literally, literally, fucking literally the only one keeping me sane <3 ";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//website engine//
+
 // let course1 = { CName: "a", CHours: 1, CPts: 4 };
 // let courseList = [course1, course2, ...];
 
