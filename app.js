@@ -28,8 +28,9 @@ function calculateGPA(courseList) {
   }
   return totalPts / totalHours;
 }
-
-//look up functions
+/////////////////////
+//look up functions//
+/////////////////////
 function getNumericGPA(charGrade) {
   ///////////////////////////////////////
   // takes a char of course grade and  //////
@@ -200,3 +201,6 @@ function getCharGPA(numGPA) {
   if (numGPA >= 3.99 && numGPA <= 4.99) charGPA = "D";
   if (numGPA >= 5.0) charGPA = "F";
 }
+//////////////////////////
+//end look up fucnctions//
+//////////////////////////
