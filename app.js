@@ -189,11 +189,14 @@ function getCharGPA(numGPA) {
   let charGPA;
   if (numGPA <= 0.99) charGPA = "A+";
   if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
+  if (numGPA >= 1.29 && numGPA <= 1.69) charGPA = "A-";
+  if (numGPA >= 1.69 && numGPA <= 1.99) charGPA = "B+";
+  if (numGPA >= 1.99 && numGPA <= 2.29) charGPA = "B";
+  if (numGPA >= 2.29 && numGPA <= 2.69) charGPA = "B-";
+  if (numGPA >= 2.69 && numGPA <= 2.99) charGPA = "C+";
+  if (numGPA >= 2.99 && numGPA <= 3.29) charGPA = "C";
+  if (numGPA >= 3.29 && numGPA <= 3.69) charGPA = "C-";
+  if (numGPA >= 3.69 && numGPA <= 3.99) charGPA = "D+";
+  if (numGPA >= 3.99 && numGPA <= 4.99) charGPA = "D";
+  if (numGPA >= 5.0) charGPA = "F";
 }
