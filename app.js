@@ -206,6 +206,8 @@ function getCharGPA(numGPA) {
 // COURSE GRADE CALCULATOR //
 /////////////////////////////
 
+function calculateCourseGrade(weights, grades) {}
+
 /////////////////////////////////
 // END COURSE GRADE CALCULATOR //
 /////////////////////////////////
