@@ -185,17 +185,35 @@ function getLowerBoundPercentage(charGrade) {
 function getCharGPA(numGPA) {
   let charGPA;
   if (numGPA <= 0.99) charGPA = "A+";
-  if (numGPA >= 0.99 && numGPA <= 1.29) charGPA = "A";
-  if (numGPA >= 1.29 && numGPA <= 1.69) charGPA = "A-";
-  if (numGPA >= 1.69 && numGPA <= 1.99) charGPA = "B+";
-  if (numGPA >= 1.99 && numGPA <= 2.29) charGPA = "B";
-  if (numGPA >= 2.29 && numGPA <= 2.69) charGPA = "B-";
-  if (numGPA >= 2.69 && numGPA <= 2.99) charGPA = "C+";
-  if (numGPA >= 2.99 && numGPA <= 3.29) charGPA = "C";
-  if (numGPA >= 3.29 && numGPA <= 3.69) charGPA = "C-";
-  if (numGPA >= 3.69 && numGPA <= 3.99) charGPA = "D+";
-  if (numGPA >= 3.99 && numGPA <= 4.99) charGPA = "D";
-  if (numGPA >= 5.0) charGPA = "F";
+  else if (numGPA > 0.99 && numGPA <= 1.29) charGPA = "A";
+  else if (numGPA > 1.29 && numGPA <= 1.69) charGPA = "A-";
+  else if (numGPA > 1.69 && numGPA <= 1.99) charGPA = "B+";
+  else if (numGPA > 1.99 && numGPA <= 2.29) charGPA = "B";
+  else if (numGPA > 2.29 && numGPA <= 2.69) charGPA = "B-";
+  else if (numGPA > 2.69 && numGPA <= 2.99) charGPA = "C+";
+  else if (numGPA > 2.99 && numGPA <= 3.29) charGPA = "C";
+  else if (numGPA > 3.29 && numGPA <= 3.69) charGPA = "C-";
+  else if (numGPA > 3.69 && numGPA <= 3.99) charGPA = "D+";
+  else if (numGPA > 3.99 && numGPA <= 4.99) charGPA = "D";
+  else charGPA = "F";
+  return charGPA;
+}
+
+function getCharPercent(numPerent) {
+  let charPercent;
+  if (numPerent >= 0.94) charPercent = "A+";
+  else if (numPerent < 0.94 && numPerent >= 0.9) charPercent = "A";
+  else if (numPerent < 0.9 && numPerent >= 0.86) charPercent = "A-";
+  else if (numPerent < 0.86 && numPerent >= 0.82) charPercent = "B+";
+  else if (numPerent < 0.82 && numPerent >= 0.78) charPercent = "B";
+  else if (numPerent < 0.78 && numPerent >= 0.74) charPercent = "B-";
+  else if (numPerent < 0.74 && numPerent >= 0.7) charPercent = "C+";
+  else if (numPerent < 0.7 && numPerent >= 0.65) charPercent = "C";
+  else if (numPerent < 0.65 && numPerent >= 0.6) charPercent = "C-";
+  else if (numPerent < 0.6 && numPerent >= 0.55) charPercent = "D+";
+  else if (numPerent < 0.55 && numPerent >= 0.5) charPercent = "D";
+  else charPercent = "F";
+  return charPercent;
 }
 
 ////////////////////////
@@ -206,7 +224,25 @@ function getCharGPA(numGPA) {
 // COURSE GRADE CALCULATOR //
 /////////////////////////////
 
-function calculateCourseGrade(weights, grades) {}
+function calculateCourseGrade(weights, grades) {
+  //list of the weights of the course components
+  //the teo lists must be of equal lengths
+  //let weights = [100, 50];
+  //list of the grade on each component
+  //let grades = [100, 50];
+
+  let totalWeight = 0;
+  for (let i = 0; i < weights.length; i++) {
+    totalWeight += weights[i];
+  }
+  if (totalWeight != 100) return "error, weights not correct";
+  if (weights.length != grades.length) return "error, I/O error";
+  let courseGradeNumeric = 0;
+  for (let i = 0; i < weights.length; i++) {
+    courseGradeNumeric += (grades[i] / 100) * weights[i];
+  }
+  return courseGradeNumeric;
+}
 
 /////////////////////////////////
 // END COURSE GRADE CALCULATOR //
