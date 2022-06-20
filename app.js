@@ -1,12 +1,10 @@
-let x = "karim";
-let y = "Nina";
-let hayaty =
-  "Cpnstant misery and pain inside, please end it, please end me and end wogoody 2bl manheeh b nafsy.";
-let alby =
-  "ninz's life and existence makes it not rotten and void, please stay cus you are literally, literally, fucking literally the only one keeping me sane <3 ";
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////
+// WEBSITE ENGINE //
+////////////////////
 
-//website engine//
+////////////////////
+// GPA CALCULATOR //
+////////////////////
 
 // let course1 = { CName: "a", CHours: 1, CPts: 4 };
 // let courseList = [course1, course2, ...];
@@ -28,9 +26,7 @@ function calculateGPA(courseList) {
   }
   return totalPts / totalHours;
 }
-/////////////////////
-//look up functions//
-/////////////////////
+
 function getNumericGPA(charGrade) {
   ///////////////////////////////////////
   // takes a char of course grade and  //////
@@ -201,6 +197,19 @@ function getCharGPA(numGPA) {
   if (numGPA >= 3.99 && numGPA <= 4.99) charGPA = "D";
   if (numGPA >= 5.0) charGPA = "F";
 }
-//////////////////////////
-//end look up fucnctions//
-//////////////////////////
+
+////////////////////////
+// END GPA CALCULATOR //
+////////////////////////
+
+/////////////////////////////
+// COURSE GRADE CALCULATOR //
+/////////////////////////////
+
+/////////////////////////////////
+// END COURSE GRADE CALCULATOR //
+/////////////////////////////////
+
+////////////////////////
+// END WEBSITE ENGINE //
+////////////////////////
