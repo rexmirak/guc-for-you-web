@@ -251,3 +251,8 @@ function calculateCourseGrade(weights, grades) {
 ////////////////////////
 // END WEBSITE ENGINE //
 ////////////////////////
+
+const print = document.getElementById("name-558c").value;
+function print() {
+  console.log(print);
+}
