@@ -252,6 +252,30 @@ function calculateCourseGrade(weights, grades) {
 // ASSIGNING INPUTS AND OUTPUTS //
 //////////////////////////////////
 
+////////////////////
+// GPA CALCULATOR //
+////////////////////
+
+// inputs
+const CName = document.getElementById("CName"); //course name
+const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
+const CGrade = document.getElementById("CGrade"); // course grade
+const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
+const CGPA = document.getElementById("CGPA"); //current GPA
+const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
+
+// output
+const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
+
+// buttons
+const AddCourse = document.getElementById("AddCourse"); //add course
+const Reset = document.getElementById("Reset"); //reset
+const Calculate = document.getElementById("Calculate"); //calculate
+
+////////////////////////
+// END GPA CALCULATOR //
+////////////////////////
+
 //////////////////////////////////////
 // END ASSIGNING INPUTS AND OUTPUTS //
 //////////////////////////////////////
