@@ -261,12 +261,13 @@ const CName = document.getElementById("CName"); //course name
 const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
 const CGrade = document.getElementById("CGrade"); // course grade
 const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
-const CGPA = document.getElementById("CGPA"); //current GPA
-const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
+const CurrGPA = document.getElementById("CGPA"); //current GPA
+let ins = [CName, CCrediHrs, CGrade, PrevTotCredHrs, CurrGPA];
 
 // output
 const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
-
+const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
+const coursesBigBrother = addedCourse.firstChild;
 // buttons
 const AddCourse = document.getElementById("AddCourse"); //add course
 const Reset = document.getElementById("Reset"); //reset
@@ -277,18 +278,59 @@ AddCourse.addEventListener("click", addCourse);
 Reset.addEventListener("click", reset);
 Calculate.addEventListener("click", calculate);
 
+//variables
+let courses = [];
+
 //btn functions
 function addCourse() {
-  //logic
-  console.log("add works");
+  //create object course from inputs
+  let course = {
+    CName: CName.value,
+    CHours: CCrediHrs.value,
+    CPts: CGrade.value,
+    id: parseInt(addedCourse.firstElementChild.value) + 1,
+  };
+  courses.push(course);
+  console.log(courses);
+
+  //add course to dropdown menu
+  let lastCourseNode = document.createElement("option");
+  lastCourseNode.setAttribute("value", course.id);
+  //   lastCourseNode.setAttribute("class", "erasable");
+  lastCourseNode.setAttribute("id", `${course.id}`);
+  lastCourseNode.appendChild(document.createTextNode(`${course.CName}`));
+  coursesBigBrother.before(lastCourseNode);
+  clearFields();
 }
+
 function reset() {
   //logic
-  console.log("reset");
+  clearFields();
+  courses = [];
+  log("reset");
+  log(courses);
 }
+
 function calculate() {
   //logic
+  let calculatedGPA = calculateGPA(courses);
+  CGPAOut.value = calculatedGPA;
   console.log("calc works");
+}
+
+//helper functions
+
+function clearFields() {
+  //clears input fields
+  for (let i = 0; i < ins.length; i++) {
+    ins[i].value = "";
+  }
+  CGrade.value = "default";
+  CGPAOut.value = "";
+}
+
+function log(x) {
+  console.log(x);
 }
 ////////////////////////
 // END GPA CALCULATOR //
