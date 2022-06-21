@@ -272,6 +272,24 @@ const AddCourse = document.getElementById("AddCourse"); //add course
 const Reset = document.getElementById("Reset"); //reset
 const Calculate = document.getElementById("Calculate"); //calculate
 
+//adding the listeners
+AddCourse.addEventListener("click", addCourse);
+Reset.addEventListener("click", reset);
+Calculate.addEventListener("click", calculate);
+
+//btn functions
+function addCourse() {
+  //logic
+  console.log("add works");
+}
+function reset() {
+  //logic
+  console.log("reset");
+}
+function calculate() {
+  //logic
+  console.log("calc works");
+}
 ////////////////////////
 // END GPA CALCULATOR //
 ////////////////////////
