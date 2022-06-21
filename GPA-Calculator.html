@@ -26,7 +26,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
     />
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 
     <script type="application/ld+json">
       {
@@ -178,157 +178,143 @@
     <section class="u-align-center u-clearfix u-section-2" id="sec-0090">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-form u-form-1">
-          <form
-            action="#"
-            method="POST"
-            class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form"
-            style="padding: 15px"
-            source="email"
-          >
-            <div class="u-form-group u-form-name u-label-top">
-              <label for="name-558c" class="u-label">Course Name</label>
-              <input
-                type="text"
-                placeholder="Course Name"
-                id="name-558c"
-                name="CName"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-              />
-            </div>
-            <div class="u-form-email u-form-group u-label-top">
-              <label for="email-558c" class="u-label"
-                >Course Credit Hours</label
-              >
-              <input
-                type="email"
-                placeholder="Course Credit Hours"
-                id="email-558c"
-                name="CCrediHrs"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-label-top u-form-group-3">
-              <label for="text-2530" class="u-label">Course Grade</label>
-              <input
-                type="text"
-                placeholder="Course Grade"
-                id="text-2530"
-                name="CGrade"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-label-top u-form-group-4">
-              <label for="text-f22f" class="u-label"
-                >Previous Total Credit Hours</label
-              >
-              <input
-                type="text"
-                placeholder="Previous Total Credit Hours"
-                id="text-f22f"
-                name="PTCH"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-label-top u-form-group-5">
-              <label for="text-8f6d" class="u-label">Current GPA</label>
-              <input
-                type="text"
-                placeholder="Current GPA"
-                id="text-8f6d"
-                name="CGPA"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-form-select u-label-top u-form-group-6">
-              <label for="select-8214" class="u-label u-label-6"
-                >Added Courses</label
-              >
-              <div class="u-form-select-wrapper">
-                <select
-                  id="select-8214"
-                  name="addedCourse"
-                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                >
-                  <option value=""></option>
-                </select>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="12"
-                  version="1"
-                  class="u-caret"
-                >
-                  <path fill="currentColor" d="M4 8L0 4h8z"></path>
-                </svg>
-              </div>
-            </div>
-            <div
-              class="u-form-group u-form-radiobutton u-label-top u-form-group-7"
+          <div class="u-form-group u-form-name u-label-top">
+            <label for="name-558c" class="u-label">Course Name</label>
+            <input
+              type="text"
+              placeholder="Course Name"
+              id="name-558c"
+              name="CName"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            />
+          </div>
+          <div class="u-form-email u-form-group u-label-top">
+            <label for="email-558c" class="u-label">Course Credit Hours</label>
+            <input
+              type="text"
+              placeholder="Course Credit Hours"
+              id="email-558c"
+              name="CCrediHrs"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              required="required"
+            />
+          </div>
+          <div class="u-form-group u-label-top u-form-group-3">
+            <label for="text-2530" class="u-label">Course Grade</label>
+            <input
+              type="text"
+              placeholder="Course Grade"
+              id="text-2530"
+              name="CGrade"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              required="required"
+            />
+          </div>
+          <div class="u-form-group u-label-top u-form-group-4">
+            <label for="text-f22f" class="u-label"
+              >Previous Total Credit Hours</label
             >
-              <div class="u-form-radio-button-wrapper">
-                <input
-                  type="radio"
-                  name="radiobutton"
-                  value="Add Course"
-                  required="required"
-                />
-                <label class="u-label" for="radiobutton">Add Course</label>
-                <br />
-                <input
-                  type="radio"
-                  name="radiobutton"
-                  value="Reset"
-                  required="required"
-                />
-                <label class="u-label" for="radiobutton">Reset</label>
-                <br />
-                <input
-                  type="radio"
-                  name="radiobutton"
-                  value="Remove Select Course"
-                  required="required"
-                />
-                <label class="u-label" for="radiobutton"
-                  >Remove Select Course</label
-                >
-                <br />
-              </div>
-            </div>
-            <div class="u-form-group u-label-top u-form-group-8">
-              <label for="text-5213" class="u-label">Cumulative GPA</label>
-              <input
-                placeholder="CGPA"
-                id="text-5213"
-                name="CGPAOut"
+            <input
+              type="text"
+              placeholder="Previous Total Credit Hours"
+              id="text-f22f"
+              name="PTCH"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              required="required"
+            />
+          </div>
+          <div class="u-form-group u-label-top u-form-group-5">
+            <label for="text-8f6d" class="u-label">Current GPA</label>
+            <input
+              type="text"
+              placeholder="Current GPA"
+              id="text-8f6d"
+              name="CGPA"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              required="required"
+            />
+          </div>
+          <div class="u-form-group u-form-select u-label-top u-form-group-6">
+            <label for="select-8214" class="u-label u-label-6"
+              >Added Courses</label
+            >
+            <div class="u-form-select-wrapper">
+              <select
+                id="select-8214"
+                name="addedCourse"
                 class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                type="text"
-              />
+              >
+                <option value=""></option>
+              </select>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="12"
+                version="1"
+                class="u-caret"
+              >
+                <path fill="currentColor" d="M4 8L0 4h8z"></path>
+              </svg>
             </div>
-            <div class="u-form-group u-form-submit">
-              <a
-                href="#"
-                class="u-btn u-btn-submit u-button-style"
-                onclick="print()"
-                >Submit Entery<br />
-              </a>
+          </div>
+          <div
+            class="u-form-group u-form-radiobutton u-label-top u-form-group-7"
+          >
+            <div class="u-form-radio-button-wrapper">
               <input
-                type="submit"
-                value="submit"
-                class="u-form-control-hidden"
+                type="radio"
+                name="radiobutton"
+                value="Add Course"
+                required="required"
               />
+              <label class="u-label" for="radiobutton">Add Course</label>
+              <br />
+              <input
+                type="radio"
+                name="radiobutton"
+                value="Reset"
+                required="required"
+              />
+              <label class="u-label" for="radiobutton">Reset</label>
+              <br />
+              <input
+                type="radio"
+                name="radiobutton"
+                value="Remove Select Course"
+                required="required"
+              />
+              <label class="u-label" for="radiobutton"
+                >Remove Select Course</label
+              >
+              <br />
             </div>
-            <div class="u-form-send-message u-form-send-success">
-              Thank you! Your message has been sent.
-            </div>
-            <div class="u-form-send-error u-form-send-message">
-              Unable to send your message. Please fix errors then try again.
-            </div>
-            <input type="hidden" value="" name="recaptchaResponse" />
-          </form>
+          </div>
+          <div class="u-form-group u-label-top u-form-group-8">
+            <label for="text-5213" class="u-label">Cumulative GPA</label>
+            <output
+              id="text-5213"
+              name="CGPAOut"
+              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              type="text"
+              form="GPA-Calculator"
+              for=""
+            />
+          </div>
+          <div class="u-form-group u-form-submit">
+            <a
+              id="GPACALC"
+              href="#"
+              class="u-btn u-btn-submit u-button-style"
+              onclick="print"
+              >Submit Entery<br />
+            </a>
+          </div>
+          <div class="u-form-send-message u-form-send-success">
+            Thank you! Your message has been sent.
+          </div>
+          <div class="u-form-send-error u-form-send-message">
+            Unable to send your message. Please fix errors then try again.
+          </div>
         </div>
       </div>
     </section>
