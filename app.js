@@ -2,6 +2,147 @@
 // WEBSITE ENGINE //
 ////////////////////
 
+//////////////////////////////////
+// ASSIGNING INPUTS AND OUTPUTS //
+//////////////////////////////////
+
+////////////////////
+// GPA CALCULATOR //
+////////////////////
+
+// inputs
+const CName = document.getElementById("CName"); //course name
+const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
+const CGrade = document.getElementById("CGrade"); // course grade
+const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
+const CurrGPA = document.getElementById("CGPA"); //current GPA
+let ins = [CName, CCrediHrs, CGrade];
+
+// output
+const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
+const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
+const coursesBigBrother = addedCourse.firstChild;
+
+// buttons
+const AddCourse = document.getElementById("AddCourse"); //add course
+const Reset = document.getElementById("Reset"); //reset
+const Calculate = document.getElementById("Calculate"); //calculate
+const removeCourse = document.getElementById("removeCourse"); //remove the selected course
+const clearFieldses = document.getElementById("clearFields"); //clear fileds without removing the courses
+
+//adding the listeners
+AddCourse.addEventListener("click", addCourse);
+Reset.addEventListener("click", reset);
+Calculate.addEventListener("click", calculate);
+removeCourse.addEventListener("click", removeSelected);
+clearFieldses.addEventListener("click", clearFields);
+
+//variables
+let courses = [];
+let alerted = false;
+let globalId = parseInt(addedCourse.firstElementChild.value) + 1;
+
+//btn functions
+function addCourse() {
+  let CHours = parseFloat(CCrediHrs.value);
+  let CPts = parseFloat(CGrade.value);
+  //error handling
+  if (isNaN(CHours) || isNaN(CPts)) {
+    alert(
+      "Please enter a Number for the Course Credit Hours and Chose a Grade "
+    );
+    return;
+  }
+  //create object course from inputs
+  let course = {
+    CName: CName.value,
+    CHours: CHours,
+    CPts: CPts,
+    id: globalId,
+  };
+  courses.push(course);
+  globalId++;
+  console.log(courses);
+
+  //add course to dropdown menu
+  let lastCourseNode = document.createElement("option");
+  lastCourseNode.setAttribute("value", course.id);
+  lastCourseNode.setAttribute("class", "erasable");
+  lastCourseNode.setAttribute("id", `${course.id}`);
+  lastCourseNode.appendChild(
+    document.createTextNode(
+      `Course: ${course.CName}, 
+      Credit Hours: ${course.CHours}, 
+      Grade: ${getCharGPA(course.CPts)}`
+    )
+  );
+  coursesBigBrother.before(lastCourseNode);
+
+  clearFields();
+}
+
+function reset() {
+  //logic
+  clearFields();
+  courses = [];
+  CGPAOut.value = "CGPA";
+  log("reset");
+  log(courses);
+  const coursesChildren = addedCourse.querySelectorAll(".erasable");
+  for (let i = 0; i < coursesChildren.length; i++) {
+    coursesChildren[i].parentNode.removeChild(coursesChildren[i]);
+  }
+  PrevTotCredHrs.value = "";
+  CurrGPA.value = "";
+}
+
+function calculate() {
+  //logic
+  let calculatedGPA = calculateGPA(courses);
+  if (isNaN(calculatedGPA)) {
+    return;
+  }
+  CGPAOut.value = calculatedGPA;
+  console.log("calc works");
+}
+
+function removeSelected() {
+  const selectedID = addedCourse.value;
+  if (parseInt(addedCourse.value) === 0) {
+    alert("bro ?");
+  } else {
+    addedCourse.remove(courses.selectedIndex);
+  }
+  //find the element in subjects array
+  for (let i = 0; i < courses.length; i++) {
+    if (parseInt(courses[i].id) === parseInt(selectedID)) {
+      courses.splice(i, 1);
+    }
+  }
+}
+
+//helper functions
+
+function clearFields() {
+  //clears input fields
+  for (let i = 0; i < ins.length; i++) {
+    ins[i].value = "";
+  }
+  CGrade.value = "default";
+}
+
+function log(x) {
+  console.log(x);
+}
+
+////////////////////////
+// END GPA CALCULATOR //
+////////////////////////
+
+//////////////////////////////////////
+// END ASSIGNING INPUTS AND OUTPUTS //
+//////////////////////////////////////
+
 ////////////////////
 // GPA CALCULATOR //
 ////////////////////
@@ -18,14 +159,15 @@ function calculateGPA(courseList) {
 
   let totalHours = 0; //total hours in the list
   let totalPts = 0; //total points in the list
-  if (CurrGPA !== NaN && PrevTotCredHrs !== NaN) {
-    totalHours = parseFloat(PrevTotCredHrs.value);
-    totalPts = parseFloat(PrevTotCredHrs.value) * parseFloat(CurrGPA.value);
+  let CurrGPAValue = parseFloat(CurrGPA.value);
+  let PrevTotCredHrsValue = parseFloat(PrevTotCredHrs.value);
+
+  if (isNaN(CurrGPAValue) || isNaN(PrevTotCredHrsValue)) {
+    totalHours = 0;
+    totalPts = 0;
   } else {
-    alert(
-      //not workinggg A33333333
-      "Wrong Input at Previous Total Credit Hours and Current GPA, Please Fix"
-    );
+    totalHours = PrevTotCredHrsValue;
+    totalPts = PrevTotCredHrsValue * CurrGPAValue;
   }
   for (let i = 0; i < courseList.length; i++) {
     totalHours += courseList[i].CHours;
@@ -256,128 +398,6 @@ function calculateCourseGrade(weights, grades) {
 /////////////////////////////////
 // END COURSE GRADE CALCULATOR //
 /////////////////////////////////
-
-//////////////////////////////////
-// ASSIGNING INPUTS AND OUTPUTS //
-//////////////////////////////////
-
-////////////////////
-// GPA CALCULATOR //
-////////////////////
-
-// inputs
-const CName = document.getElementById("CName"); //course name
-const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
-const CGrade = document.getElementById("CGrade"); // course grade
-const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
-const CurrGPA = document.getElementById("CGPA"); //current GPA
-let ins = [CName, CCrediHrs, CGrade];
-
-// output
-const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
-const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
-const coursesBigBrother = addedCourse.firstChild;
-// buttons
-const AddCourse = document.getElementById("AddCourse"); //add course
-const Reset = document.getElementById("Reset"); //reset
-const Calculate = document.getElementById("Calculate"); //calculate
-const removeCourse = document.getElementById("removeCourse"); //remove the selected course
-const clearFieldses = document.getElementById("clearFields"); //clear fileds without removing the courses
-//adding the listeners
-AddCourse.addEventListener("click", addCourse);
-Reset.addEventListener("click", reset);
-Calculate.addEventListener("click", calculate);
-removeCourse.addEventListener("click", removeSelected);
-clearFieldses.addEventListener("click", clearFields);
-//variables
-let courses = [];
-
-//btn functions
-function addCourse() {
-  //create object course from inputs
-  let course = {
-    CName: CName.value,
-    CHours: parseFloat(CCrediHrs.value),
-    CPts: parseFloat(CGrade.value),
-    id: parseInt(addedCourse.firstElementChild.value) + 1,
-  };
-  courses.push(course);
-  console.log(courses);
-
-  //add course to dropdown menu
-  let lastCourseNode = document.createElement("option");
-  lastCourseNode.setAttribute("value", course.id);
-  lastCourseNode.setAttribute("class", "erasable");
-  lastCourseNode.setAttribute("id", `${course.id}`);
-  lastCourseNode.appendChild(
-    document.createTextNode(
-      `Course: ${course.CName}, 
-      Credit Hours: ${course.CHours}, 
-      Grade: ${getCharGPA(course.CPts)}`
-    )
-  );
-  coursesBigBrother.before(lastCourseNode);
-  clearFields();
-}
-
-function reset() {
-  //logic
-  clearFields();
-  courses = [];
-  CGPAOut.value = "CGPA";
-  log("reset");
-  log(courses);
-  const coursesChildren = addedCourse.querySelectorAll(".erasable");
-  for (let i = 0; i < coursesChildren.length; i++) {
-    coursesChildren[i].parentNode.removeChild(coursesChildren[i]);
-  }
-  PrevTotCredHrs.value = "";
-  CurrGPA.value = "";
-}
-
-function calculate() {
-  //logic
-  let calculatedGPA = calculateGPA(courses);
-  CGPAOut.value = calculatedGPA;
-  console.log("calc works");
-}
-
-function removeSelected() {
-  const selectedID = addedCourse.value;
-  if (parseInt(addedCourse.value) === 0) {
-    alert("bro ?");
-  } else {
-    addedCourse.remove(courses.selectedIndex);
-  }
-  //find the element in subjects array
-  for (let i = 0; i < courses.length; i++) {
-    if (parseInt(courses[i].id) === parseInt(selectedID)) {
-      courses.splice(i, 1);
-    }
-  }
-  console.log(courses);
-}
-
-//helper functions
-
-function clearFields() {
-  //clears input fields
-  for (let i = 0; i < ins.length; i++) {
-    ins[i].value = "";
-  }
-  CGrade.value = "default";
-}
-
-function log(x) {
-  console.log(x);
-}
-////////////////////////
-// END GPA CALCULATOR //
-////////////////////////
-
-//////////////////////////////////////
-// END ASSIGNING INPUTS AND OUTPUTS //
-//////////////////////////////////////
 
 ////////////////////////
 // END WEBSITE ENGINE //
