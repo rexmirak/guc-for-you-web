@@ -1,157 +1,121 @@
-////////////////////
-// WEBSITE ENGINE //
-////////////////////
-//*************************************************************************************************************//
-////////////////////
-// GPA CALCULATOR //
-////////////////////
+/////////////////////////////
+// COURSE GRADE CALCULATOR //
+/////////////////////////////
 ////////////
 // INPUTS //
 ////////////
-const CName = document.getElementById("CName"); //course name
-const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
-const CGrade = document.getElementById("CGrade"); // course grade
-const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
-const CurrGPA = document.getElementById("CGPA"); //current GPA
-let ins = [CName, CCrediHrs, CGrade];
+let CGCCname = document.getElementById("CGCCname");
+let CGCWeights = document.getElementById("CGCWeights");
+let CGCGrades = document.getElementById("CGCGrades");
 
 /////////////
 // OUTPUTS //
 /////////////
-const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
-const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
-const coursesBigBrother = addedCourse.firstChild;
+let CourseGradePercent = document.getElementById("CGP");
+let CourseGradeChar = document.getElementById("CGC");
 
 /////////////
 // BUTTONS //
 /////////////
-const AddCourse = document.getElementById("AddCourse"); //add course
-const Reset = document.getElementById("Reset"); //reset
-const Calculate = document.getElementById("Calculate"); //calculate
-const removeCourse = document.getElementById("removeCourse"); //remove the selected course
-const clearFieldses = document.getElementById("clearFields"); //clear fileds without removing the courses
-
+let CalculateCourseGrade = document.getElementById("CalculateCourseGrade");
+let neededForFinal = document.getElementById("CHMNIFFCG");
 /////////////////////
 //ADDING LISTENERS //
 /////////////////////
-AddCourse.addEventListener("click", addCourse);
-Reset.addEventListener("click", reset);
-Calculate.addEventListener("click", calculate);
-removeCourse.addEventListener("click", removeSelected);
-clearFieldses.addEventListener("click", clearFields);
-
+CalculateCourseGrade.addEventListener("click", calculateCourse);
+neededForFinal.addEventListener("click", calculateNeededFinal);
 ///////////////
 // VARIABLES //
 ///////////////
-let courses = [];
-let alerted = false;
-let globalId = parseInt(addedCourse.firstElementChild.value) + 1;
 
 //////////////////////
 // BUTTON FUNCTIONS //
 //////////////////////
-function addCourse() {
-  let CHours = parseFloat(CCrediHrs.value);
-  let CPts = parseFloat(CGrade.value);
-  //error handling
-  if (isNaN(CHours) || isNaN(CPts)) {
-    alert(
-      "Please enter a Number for the Course Credit Hours and Chose a Grade "
-    );
+function calculateCourse() {
+  let weightsString = CGCWeights.value;
+  let gradesString = CGCGrades.value;
+  let weightsList = getList(weightsString);
+  let gradesList = getList(gradesString);
+
+  if (weightsList.length !== gradesList.length) {
+    alert("Wrong input at Weights and grades!");
     return;
   }
-  //create object course from inputs
-  let course = {
-    CName: CName.value,
-    CHours: CHours,
-    CPts: CPts,
-    id: globalId,
-  };
-  courses.push(course);
-  globalId++;
-  console.log(courses);
-
-  //add course to dropdown menu
-  let lastCourseNode = document.createElement("option");
-  lastCourseNode.setAttribute("value", course.id);
-  lastCourseNode.setAttribute("class", "erasable");
-  lastCourseNode.setAttribute("id", `${course.id}`);
-  lastCourseNode.appendChild(
-    document.createTextNode(
-      `Course: ${course.CName}, 
-      Credit Hours: ${course.CHours}, 
-      Grade: ${getCharGPA(course.CPts)}`
-    )
-  );
-  coursesBigBrother.before(lastCourseNode);
-
-  clearFields();
+  let totalGrade = calculateCourseGrade(weightsList, gradesList);
+  CourseGradePercent.value = totalGrade;
+  CourseGradeChar.value = getCharPercent(totalGrade / 100);
 }
 
-function reset() {
-  //logic
-  clearFields();
-  courses = [];
-  CGPAOut.value = "CGPA";
-  log("reset");
-  log(courses);
-  const coursesChildren = addedCourse.querySelectorAll(".erasable");
-  for (let i = 0; i < coursesChildren.length; i++) {
-    coursesChildren[i].parentNode.removeChild(coursesChildren[i]);
-  }
-  PrevTotCredHrs.value = "";
-  CurrGPA.value = "";
-}
+function calculateNeededFinal() {
+  let weightsString = CGCWeights.value;
+  let gradesString = CGCGrades.value;
+  let weightsList = getList(weightsString);
+  let gradesList = getList(gradesString);
 
-function calculate() {
-  //logic
-  let calculatedGPA = calculateGPA(courses);
-  if (isNaN(calculatedGPA)) {
-    return;
+  let total = 0;
+  for (let i = 0; i < weightsList.length; i++) {
+    total += weightsList[i];
   }
-  CGPAOut.value = calculatedGPA;
-  console.log("calc works");
-}
+  if (total < 100) weightsList.push(100 - total);
 
-function removeSelected() {
-  const selectedID = addedCourse.value;
-  if (parseInt(addedCourse.value) === 0) {
-    alert("bro ?");
-    return;
-  } else {
-    addedCourse.remove(courses.selectedIndex);
-  }
-  //find the element in subjects array
-  for (let i = 0; i < courses.length; i++) {
-    if (parseInt(courses[i].id) === parseInt(selectedID)) {
-      courses.splice(i, 1);
-    }
-  }
+  //   let omak = "set fadelah";
+  //   if (omak !== "set fadela") {
+  //     omak = "ra2asa";
+  //   }
+  let uperBound = getUpperBoundPercentage(CourseGradeChar.value);
+  let lwerBound = getLowerBoundPercentage(CourseGradeChar.value);
+
+  let finalUper = getGrade(weightsList, gradesList, uperBound);
+  let finallower = getGrade(weightsList, gradesList, lwerBound);
+  log(finalUper + " " + finallower);
+  document.getElementById("CGPLabel").textContent = "Final Course Percentage";
+  CourseGradePercent.value =
+    " Score between " +
+    finalUper +
+    " and " +
+    finallower +
+    " in the Final. Good Luck :)";
 }
 
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
-function clearFields() {
-  //clears input fields
-  for (let i = 0; i < ins.length; i++) {
-    ins[i].value = "";
+function getList(string) {
+  //"20, 50, 60" => [20,50,60]
+  let temp = string.split(",");
+  let resList = [];
+  for (let i = 0; i < temp.length; i++) {
+    resList.push(parseFloat(temp[i]));
   }
-  CGrade.value = "default";
+  for (let i = 0; i < resList.length; i++) {
+    if (isNaN(resList[i])) {
+      alert("error in list");
+      return;
+    }
+  }
+  return resList;
 }
+
+function getGrade(listOfWeights, listOfGrades, desiredPercent) {
+  //list of grades length = list of weights length -1
+  let totalSoFar = 0;
+  for (let i = 0; i < listOfGrades.length; i++) {
+    totalSoFar = (listOfGrades[i] / 100) * listOfWeights[i];
+  }
+  log(totalSoFar);
+  return (
+    ((desiredPercent - totalSoFar) / listOfWeights[listOfWeights.length - 1]) *
+    100
+  );
+}
+
 //////////////////////////
 // END HELPER FUNCTIONS //
 //////////////////////////
 
-////////////////////////
-// END GPA CALCULATOR //
-////////////////////////
-//*************************************************************************************************************//
-//*************************************************************************************************************//
-////////////////////////
-// END WEBSITE ENGINE //
-////////////////////////
-
+/////////////////////////////////
+// END COURSE GRADE CALCULATOR //
+/////////////////////////////////
 //////////////////
 // GLOBAL LOGIC //
 //////////////////
@@ -296,7 +260,6 @@ function getUpperBoundPercentage(charGrade) {
   // upper bound percentage    //
   ///////////////////////////////
   let upperPercentage = 0;
-  charGrade = charGrade.toLowerCase();
   switch (charGrade) {
     case "A+":
       upperPercentage = 100;
@@ -348,7 +311,6 @@ function getLowerBoundPercentage(charGrade) {
   // upper bound percentage    //
   ///////////////////////////////
   let lowerPercentage = 0;
-  charGrade = charGrade.toLowerCase();
   switch (charGrade) {
     case "A+":
       lowerPercentage = 94;
@@ -411,7 +373,7 @@ function getCharGPA(numGPA) {
 }
 
 function getCharPercent(numPerent) {
-  let charPercent;
+  let charPercent = "";
   if (numPerent >= 0.94) charPercent = "A+";
   else if (numPerent < 0.94 && numPerent >= 0.9) charPercent = "A";
   else if (numPerent < 0.9 && numPerent >= 0.86) charPercent = "A-";
@@ -427,7 +389,7 @@ function getCharPercent(numPerent) {
   return charPercent;
 }
 
-function calculateCourseGrade(weights, grades) {
+function calculateCourseGrade(weightsIn, gradesIn) {
   //list of the weights of the course components
   //the teo lists must be of equal lengths
   //let weights = [100, 50];
@@ -435,14 +397,15 @@ function calculateCourseGrade(weights, grades) {
   //let grades = [100, 50];
 
   let totalWeight = 0;
-  for (let i = 0; i < weights.length; i++) {
-    totalWeight += weights[i];
+  for (let i = 0; i < weightsIn.length; i++) {
+    totalWeight += weightsIn[i];
   }
   if (totalWeight != 100) return "error, weights not correct";
-  if (weights.length != grades.length) return "error, I/O error";
+  if (weightsIn.length != gradesIn.length) return "error, I/O error";
   let courseGradeNumeric = 0;
-  for (let i = 0; i < weights.length; i++) {
-    courseGradeNumeric += (grades[i] / 100) * weights[i];
+  for (let i = 0; i < weightsIn.length; i++) {
+    log(courseGradeNumeric);
+    courseGradeNumeric += (gradesIn[i] / 100) * weightsIn[i];
   }
   return courseGradeNumeric;
 }
