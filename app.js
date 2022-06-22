@@ -118,6 +118,7 @@ function removeSelected() {
   const selectedID = addedCourse.value;
   if (parseInt(addedCourse.value) === 0) {
     alert("bro ?");
+    return;
   } else {
     addedCourse.remove(courses.selectedIndex);
   }
