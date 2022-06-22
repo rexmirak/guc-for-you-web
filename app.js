@@ -18,6 +18,15 @@ function calculateGPA(courseList) {
 
   let totalHours = 0; //total hours in the list
   let totalPts = 0; //total points in the list
+  if (CurrGPA !== NaN && PrevTotCredHrs !== NaN) {
+    totalHours = parseFloat(PrevTotCredHrs.value);
+    totalPts = parseFloat(PrevTotCredHrs.value) * parseFloat(CurrGPA.value);
+  } else {
+    alert(
+      //not workinggg A33333333
+      "Wrong Input at Previous Total Credit Hours and Current GPA, Please Fix"
+    );
+  }
   for (let i = 0; i < courseList.length; i++) {
     totalHours += courseList[i].CHours;
     //summing the total hours
@@ -262,7 +271,7 @@ const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
 const CGrade = document.getElementById("CGrade"); // course grade
 const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous total credit hours
 const CurrGPA = document.getElementById("CGPA"); //current GPA
-let ins = [CName, CCrediHrs, CGrade, PrevTotCredHrs, CurrGPA];
+let ins = [CName, CCrediHrs, CGrade];
 
 // output
 const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
@@ -272,12 +281,14 @@ const coursesBigBrother = addedCourse.firstChild;
 const AddCourse = document.getElementById("AddCourse"); //add course
 const Reset = document.getElementById("Reset"); //reset
 const Calculate = document.getElementById("Calculate"); //calculate
-
+const removeCourse = document.getElementById("removeCourse"); //remove the selected course
+const clearFieldses = document.getElementById("clearFields"); //clear fileds without removing the courses
 //adding the listeners
 AddCourse.addEventListener("click", addCourse);
 Reset.addEventListener("click", reset);
 Calculate.addEventListener("click", calculate);
-
+removeCourse.addEventListener("click", removeSelected);
+clearFieldses.addEventListener("click", clearFields);
 //variables
 let courses = [];
 
@@ -286,8 +297,8 @@ function addCourse() {
   //create object course from inputs
   let course = {
     CName: CName.value,
-    CHours: CCrediHrs.value,
-    CPts: CGrade.value,
+    CHours: parseFloat(CCrediHrs.value),
+    CPts: parseFloat(CGrade.value),
     id: parseInt(addedCourse.firstElementChild.value) + 1,
   };
   courses.push(course);
@@ -296,9 +307,15 @@ function addCourse() {
   //add course to dropdown menu
   let lastCourseNode = document.createElement("option");
   lastCourseNode.setAttribute("value", course.id);
-  //   lastCourseNode.setAttribute("class", "erasable");
+  lastCourseNode.setAttribute("class", "erasable");
   lastCourseNode.setAttribute("id", `${course.id}`);
-  lastCourseNode.appendChild(document.createTextNode(`${course.CName}`));
+  lastCourseNode.appendChild(
+    document.createTextNode(
+      `Course: ${course.CName}, 
+      Credit Hours: ${course.CHours}, 
+      Grade: ${getCharGPA(course.CPts)}`
+    )
+  );
   coursesBigBrother.before(lastCourseNode);
   clearFields();
 }
@@ -307,8 +324,15 @@ function reset() {
   //logic
   clearFields();
   courses = [];
+  CGPAOut.value = "CGPA";
   log("reset");
   log(courses);
+  const coursesChildren = addedCourse.querySelectorAll(".erasable");
+  for (let i = 0; i < coursesChildren.length; i++) {
+    coursesChildren[i].parentNode.removeChild(coursesChildren[i]);
+  }
+  PrevTotCredHrs.value = "";
+  CurrGPA.value = "";
 }
 
 function calculate() {
@@ -316,6 +340,22 @@ function calculate() {
   let calculatedGPA = calculateGPA(courses);
   CGPAOut.value = calculatedGPA;
   console.log("calc works");
+}
+
+function removeSelected() {
+  const selectedID = addedCourse.value;
+  if (parseInt(addedCourse.value) === 0) {
+    alert("bro ?");
+  } else {
+    addedCourse.remove(courses.selectedIndex);
+  }
+  //find the element in subjects array
+  for (let i = 0; i < courses.length; i++) {
+    if (parseInt(courses[i].id) === parseInt(selectedID)) {
+      courses.splice(i, 1);
+    }
+  }
+  console.log(courses);
 }
 
 //helper functions
@@ -326,7 +366,6 @@ function clearFields() {
     ins[i].value = "";
   }
   CGrade.value = "default";
-  CGPAOut.value = "";
 }
 
 function log(x) {
