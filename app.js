@@ -2,15 +2,13 @@
 // WEBSITE ENGINE //
 ////////////////////
 
-//////////////////////////////////
-// ASSIGNING INPUTS AND OUTPUTS //
-//////////////////////////////////
-
+//*************************************************************************************************************//
 ////////////////////
 // GPA CALCULATOR //
 ////////////////////
-
-// inputs
+////////////
+// INPUTS //
+////////////
 const CName = document.getElementById("CName"); //course name
 const CCrediHrs = document.getElementById("CCrediHrs"); //course credit hours
 const CGrade = document.getElementById("CGrade"); // course grade
@@ -18,31 +16,41 @@ const PrevTotCredHrs = document.getElementById("PrevTotCredHrs"); //previous tot
 const CurrGPA = document.getElementById("CGPA"); //current GPA
 let ins = [CName, CCrediHrs, CGrade];
 
-// output
+/////////////
+// OUTPUTS //
+/////////////
 const CGPAOut = document.getElementById("CGPAOut"); //output of GPA calculation
 const addedCourse = document.getElementById("addedCourse"); //selected course from the added courses
 const coursesBigBrother = addedCourse.firstChild;
 
-// buttons
+/////////////
+// BUTTONS //
+/////////////
 const AddCourse = document.getElementById("AddCourse"); //add course
 const Reset = document.getElementById("Reset"); //reset
 const Calculate = document.getElementById("Calculate"); //calculate
 const removeCourse = document.getElementById("removeCourse"); //remove the selected course
 const clearFieldses = document.getElementById("clearFields"); //clear fileds without removing the courses
 
-//adding the listeners
+/////////////////////
+//ADDING LISTENERS //
+/////////////////////
 AddCourse.addEventListener("click", addCourse);
 Reset.addEventListener("click", reset);
 Calculate.addEventListener("click", calculate);
 removeCourse.addEventListener("click", removeSelected);
 clearFieldses.addEventListener("click", clearFields);
 
-//variables
+///////////////
+// VARIABLES //
+///////////////
 let courses = [];
 let alerted = false;
 let globalId = parseInt(addedCourse.firstElementChild.value) + 1;
 
-//btn functions
+//////////////////////
+// BUTTON FUNCTIONS //
+//////////////////////
 function addCourse() {
   let CHours = parseFloat(CCrediHrs.value);
   let CPts = parseFloat(CGrade.value);
@@ -121,8 +129,9 @@ function removeSelected() {
   }
 }
 
-//helper functions
-
+//////////////////////
+// HELPER FUNCTIONS //
+//////////////////////
 function clearFields() {
   //clears input fields
   for (let i = 0; i < ins.length; i++) {
@@ -131,24 +140,51 @@ function clearFields() {
   CGrade.value = "default";
 }
 
-function log(x) {
-  console.log(x);
-}
-
 ////////////////////////
 // END GPA CALCULATOR //
 ////////////////////////
+//*************************************************************************************************************//
+/////////////////////////////
+// COURSE GRADE CALCULATOR //
+/////////////////////////////
+////////////
+// INPUTS //
+////////////
 
-//////////////////////////////////////
-// END ASSIGNING INPUTS AND OUTPUTS //
-//////////////////////////////////////
+/////////////
+// OUTPUTS //
+/////////////
 
-////////////////////
-// GPA CALCULATOR //
-////////////////////
+/////////////
+// BUTTONS //
+/////////////
 
-// let course1 = { CName: "a", CHours: 1, CPts: 4 };
-// let courseList = [course1, course2, ...];
+/////////////////////
+//ADDING LISTENERS //
+/////////////////////
+
+///////////////
+// VARIABLES //
+///////////////
+
+//////////////////////
+// BUTTON FUNCTIONS //
+//////////////////////
+
+/////////////////////////////////
+// END COURSE GRADE CALCULATOR //
+/////////////////////////////////
+//*************************************************************************************************************//
+////////////////////////
+// END WEBSITE ENGINE //
+////////////////////////
+
+//////////////////
+// GLOBAL LOGIC //
+//////////////////
+function log(x) {
+  console.log(x);
+}
 
 function calculateGPA(courseList) {
   //////////////////////////////////
@@ -367,14 +403,6 @@ function getCharPercent(numPerent) {
   return charPercent;
 }
 
-////////////////////////
-// END GPA CALCULATOR //
-////////////////////////
-
-/////////////////////////////
-// COURSE GRADE CALCULATOR //
-/////////////////////////////
-
 function calculateCourseGrade(weights, grades) {
   //list of the weights of the course components
   //the teo lists must be of equal lengths
@@ -394,11 +422,6 @@ function calculateCourseGrade(weights, grades) {
   }
   return courseGradeNumeric;
 }
-
-/////////////////////////////////
-// END COURSE GRADE CALCULATOR //
-/////////////////////////////////
-
-////////////////////////
-// END WEBSITE ENGINE //
-////////////////////////
+//////////////////////
+// END GLOBAL LOGIC //
+//////////////////////
