@@ -151,14 +151,21 @@ function clearFields() {
 ////////////
 // INPUTS //
 ////////////
+let CGCCname = document.getElementById("CGCCname");
+let CGCWeights = document.getElementById("CGCWeights");
+let CGCGrades = document.getElementById("CGCGrades");
+let = document.getElementById("");
 
 /////////////
 // OUTPUTS //
 /////////////
+let CourseGradePercent = document.getElementById("CGP");
+let CourseGradeChar = document.getElementById("CGC");
 
 /////////////
 // BUTTONS //
 /////////////
+let CalculateCourseGrade = document.getElementById("CalculateCourseGrade");
 
 /////////////////////
 //ADDING LISTENERS //

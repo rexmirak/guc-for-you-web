@@ -180,65 +180,66 @@
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-b8c4">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-form u-form-1">
-          <form
-            action="#"
-            method="POST"
-            class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form"
-            style="padding: 15px"
-            source="email"
+        <div class="u-form-group u-form-name u-label-top">
+          <label for="name-558c" class="u-label">Course Name</label>
+          <input
+            type="text"
+            placeholder="Math 3"
+            id="CGCCname"
+            name="CName"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            autofocus="autofocus"
+          />
+        </div>
+        <div class="u-form-group u-label-top u-form-group-2">
+          <label for="text-edce" class="u-label">Weights</label>
+          <input
+            type="text"
+            placeholder="20, 15, 15,  40, 10"
+            id="CGCWeights"
+            name="weights"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            required="required"
+          />
+        </div>
+        <div class="u-form-group u-label-top u-form-group-3">
+          <label for="text-e694" class="u-label">Grades</label>
+          <input
+            type="text"
+            placeholder="100,50,80,45"
+            id="CGCGrades"
+            name="CGCGrades"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            required="required"
+          />
+        </div>
+        <div class="u-form-group u-label-top u-form-group-8">
+          <label for="text-5213" class="u-label">Course Grade Percentage</label>
+          <output
+            id="CGP"
+            name="CGPAOut"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            type="text"
+            >Course Grade Percentage</output
           >
-            <div class="u-form-group u-form-name u-label-top">
-              <label for="name-558c" class="u-label">Course Name</label>
-              <input
-                type="text"
-                placeholder="Math 3"
-                id="name-558c"
-                name="CName"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                autofocus="autofocus"
-              />
-            </div>
-            <div class="u-form-group u-label-top u-form-group-2">
-              <label for="text-edce" class="u-label">Weights</label>
-              <input
-                type="text"
-                placeholder="20, 15, 15,  40, 10"
-                id="text-edce"
-                name="weights"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-label-top u-form-group-3">
-              <label for="text-e694" class="u-label">Grades</label>
-              <input
-                type="text"
-                placeholder="100,50,80,45"
-                id="text-e694"
-                name="grades"
-                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-                required="required"
-              />
-            </div>
-            <div class="u-form-group u-form-submit">
-              <a href="#" class="u-btn u-btn-submit u-button-style"
-                >Submit Entery<br />
-              </a>
-              <input
-                type="submit"
-                value="submit"
-                class="u-form-control-hidden"
-              />
-            </div>
-            <div class="u-form-send-message u-form-send-success">
-              Thank you! Your message has been sent.
-            </div>
-            <div class="u-form-send-error u-form-send-message">
-              Unable to send your message. Please fix errors then try again.
-            </div>
-            <input type="hidden" value="" name="recaptchaResponse" />
-          </form>
+        </div>
+        <div class="u-form-group u-label-top u-form-group-8">
+          <label for="text-5213" class="u-label">Course Grade Category</label>
+          <output
+            id="CGC"
+            name="CGPAOut"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            type="text"
+            >Course Grade Category</output
+          >
+        </div>
+        <div class="u-form-group u-form-submit">
+          <a
+            href="#"
+            class="u-btn u-btn-submit u-button-style"
+            id="CalculateCourseGrade"
+            >Calculate Course Grade<br />
+          </a>
         </div>
       </div>
     </section>
