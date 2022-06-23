@@ -51,7 +51,6 @@ function calculateNeededFinal() {
   let gradesString = CGCGrades.value;
   let weightsList = getList(weightsString);
   let gradesList = getList(gradesString);
-
   let total = 0;
   for (let i = 0; i < weightsList.length; i++) {
     total += weightsList[i];
@@ -62,6 +61,10 @@ function calculateNeededFinal() {
   //   if (omak !== "set fadela") {
   //     omak = "ra2asa";
   //   }
+  if (CourseGradeChar.value === "default") {
+    alert("Please Select a grade.");
+    return;
+  }
   let uperBound = getUpperBoundPercentage(CourseGradeChar.value);
   let lwerBound = getLowerBoundPercentage(CourseGradeChar.value);
 
@@ -100,9 +103,9 @@ function getGrade(listOfWeights, listOfGrades, desiredPercent) {
   //list of grades length = list of weights length -1
   let totalSoFar = 0;
   for (let i = 0; i < listOfGrades.length; i++) {
-    totalSoFar = (listOfGrades[i] / 100) * listOfWeights[i];
+    totalSoFar += (listOfGrades[i] / 100) * listOfWeights[i];
   }
-  log(totalSoFar);
+
   return (
     ((desiredPercent - totalSoFar) / listOfWeights[listOfWeights.length - 1]) *
     100
