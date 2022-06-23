@@ -7,23 +7,25 @@
 let CGCCname = document.getElementById("CGCCname");
 let CGCWeights = document.getElementById("CGCWeights");
 let CGCGrades = document.getElementById("CGCGrades");
-
+let ins = [CGCCname, CGCWeights];
 /////////////
 // OUTPUTS //
 /////////////
 let CourseGradePercent = document.getElementById("CGP");
 let CourseGradeChar = document.getElementById("CGC");
-
+let outs = [CourseGradePercent, CourseGradeChar];
 /////////////
 // BUTTONS //
 /////////////
 let CalculateCourseGrade = document.getElementById("CalculateCourseGrade");
 let neededForFinal = document.getElementById("CHMNIFFCG");
+let resetCourseGrade = document.getElementById("resetCourseGrade");
 /////////////////////
 //ADDING LISTENERS //
 /////////////////////
 CalculateCourseGrade.addEventListener("click", calculateCourse);
 neededForFinal.addEventListener("click", calculateNeededFinal);
+resetCourseGrade.addEventListener("click", restPageCourseGrade);
 ///////////////
 // VARIABLES //
 ///////////////
@@ -79,7 +81,9 @@ function calculateNeededFinal() {
     finallower +
     " in the Final. Good Luck :)";
 }
-
+function restPageCourseGrade() {
+  location.reload();
+}
 //////////////////////
 // HELPER FUNCTIONS //
 //////////////////////
