@@ -1,5 +1,5 @@
 <!-- 
-  23/6/2022 HOFFRA
+  23/6/2022 HOME
   Shaymaa aka Shimz,
   Nina aka Ninz,
   Mariam I., aka Mimz aka Mars,
@@ -26,6 +26,12 @@
       src="jquery.js"
       defer=""
     ></script>
+
+    <script>
+      function myFunction() {
+        alert("I am an alert box!");
+      }
+    </script>
     <script
       class="u-script"
       type="text/javascript"
@@ -196,114 +202,42 @@
     <section class="u-align-center u-clearfix u-section-2" id="sec-b8c4">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-form u-form-1">
-          <div class="u-form-group u-form-name u-label-top">
-            <label for="name-558c" class="u-label">Course Name</label>
-            <input
+          <form
+            action="mailto:you@yourdmainhere.com"
+            method="post"
+            enctype="text/plain"
+            class=""
+            style="text-align: left"
+          >
+            Name:<input
               type="text"
-              placeholder="Math 3"
-              id="CGCCname"
-              name="CName"
-              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-              autofocus="autofocus"
-            />
-          </div>
-          <div class="u-form-group u-label-top u-form-group-2">
-            <label for="text-edce" class="u-label"
-              >Weights (Enter a list of weights separated by "," with the
-              Final's weight at the end.)</label
-            >
-            <input
-              type="text"
-              placeholder="20, 15, 15,  10, 40"
-              id="CGCWeights"
-              name="weights"
-              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+              name="Name"
               required="required"
-            />
-          </div>
-          <div class="u-form-group u-label-top u-form-group-3">
-            <label for="text-e694" class="u-label"
-              >Grades (Enter a list of grades, of the corresponding weight in
-              the previous field, separated by "," )</label
-            >
-            <input
-              type="text"
-              placeholder="100, 50, 80, 45"
-              id="CGCGrades"
-              name="CGCGrades"
+              placeholder="Reanu Keeves"
               class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            />
+            <!-- Email:<input
+              name="Email"
+              type="text"
               required="required"
-            />
-          </div>
-          <div class="u-form-group u-label-top u-form-group-8">
-            <label id="CGPLabel" for="text-5213" class="u-label"
-              >Course Grade Percentage</label
-            >
-            <output
-              id="CGP"
-              name="CGPAOut"
+              placeholder="email@email.com"
               class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            /> -->
+            Problem:<input
               type="text"
-              >Course Grade Percentage</output
-            >
-          </div>
-          <div class="u-form-group u-form-select u-label-top u-form-group-6">
-            <label for="text-2530" class="u-label u-label-6"
-              >Course Grade</label
-            >
-          </div>
-          <div class="u-form-select-wrapper">
-            <select
-              name="Grade"
-              id="CGC"
+              required="required"
+              placeholder="What's your oroblem?"
+              name="Problem"
               class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-            >
-              <option value="default">Course Grade</option>
-              <option value="A+">A+</option>
-              <option value="A">A</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B">B</option>
-              <option value="B-">B-</option>
-              <option value="C+">C+</option>
-              <option value="C">C</option>
-              <option value="C-">C-</option>
-              <option value="D+">D+</option>
-              <option value="D">D</option>
-              <option value="F">F</option>
-            </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="12"
-              version="1"
-              class="u-caret"
-            >
-              <path fill="currentColor" d="M4 8L0 4h8z"></path>
-            </svg>
-          </div>
-          <div class="u-form-group u-form-submit">
-            <a
-              href="#"
+            />
+            <input
+              type="submit"
+              value="Submit"
               class="u-btn u-btn-submit u-button-style"
-              id="CalculateCourseGrade"
-              >Calculate Course Grade<br />
-            </a>
-            <a href="#" class="u-btn u-btn-submit u-button-style" id="CHMNIFFCG"
-              >Needed In Final<br />
-            </a>
-            <a
-              href="#"
-              class="u-btn u-btn-submit u-button-style"
-              id="resetCourseGrade"
-              >Reset<br />
-            </a>
-          </div>
+            />
+          </form>
         </div>
       </div>
-      <a href="issues.html" class="u-btn u-btn-submit u-button-style"
-        >Report an Issue<br />
-      </a>
     </section>
 
     <footer
