@@ -16,7 +16,7 @@
     <meta charset="utf-8" />
     <meta name="keywords" content="Course Grade Calculator" />
     <meta name="description" content="" />
-    <title>GPA Translation</title>
+    <title>Convert GPA to 4.0 Scale</title>
     <link rel="stylesheet" href="nicepage.css" media="screen" />
     <link rel="stylesheet" href="Course-Grade-Calculator.css" media="screen" />
     <link rel="icon" href="./images/screamIco.png" type="image/x-icon" />
@@ -140,6 +140,14 @@
                   >Lower The GPA</a
                 >
               </li>
+              <li class="u-nav-item">
+                <a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  href="translation.html"
+                  style="padding: 10px 20px"
+                  >Convert GPA to 4.0 Scale</a
+                >
+              </li>
             </ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -178,6 +186,14 @@
                       >Lower The GPA</a
                     >
                   </li>
+                  <li class="u-nav-item">
+                    <a
+                      class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                      href="translation.html"
+                      style="padding: 10px 20px"
+                      >Convert GPA to 4.0 Scale</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
@@ -195,47 +211,32 @@
     >
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <h1 class="u-text u-text-default u-title u-text-1">
-          Course Grade Calculator
+          Convert GPA to 4.0 Scale
         </h1>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-b8c4">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-form u-form-1">
-          <form
-            action="mailto:karim.ahmed766@yahoo.com"
-            method="post"
-            enctype="text/plain"
-            class=""
-            style="text-align: left"
+          GUC GPA<input
+            type="text"
+            name="GUCGPA"
+            id="GUCGPA"
+            required="required"
+            placeholder="0.7"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+          />
+          equivalent GPA in 4.0 scale<output
+            type="text"
+            required="required"
+            name="pt4Scale"
+            id="pt4Scale"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+            > </br> </output
           >
-            Name:<input
-              type="text"
-              name="Name"
-              required="required"
-              placeholder="Reanu Keeves"
-              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-            />
-            <!-- Email:<input
-              name="Email"
-              type="text"
-              required="required"
-              placeholder="email@email.com"
-              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-            /> -->
-            Problem:<input
-              type="text"
-              required="required"
-              placeholder="What's your oroblem?"
-              name="Problem"
-              class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
-            />
-            <input
-              type="submit"
-              value="Submit"
-              class="u-btn u-btn-submit u-button-style"
-            />
-          </form>
+          <a id="convertGPA" href="#" class="u-btn u-btn-submit u-button-style"
+              >Convert<br />
+            </a>
         </div>
       </div>
     </section>
