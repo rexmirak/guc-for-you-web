@@ -14,7 +14,8 @@ function convertF() {
     alert("Plaese enter a valid number between 0.7 and 5.0");
     return;
   }
-  resGPA = ((5.0 - toConvert) / (5.0 - 0.7)) * 3 + 1;
+  // resGPA = ((5.0 - toConvert) / (5.0 - 0.7)) * 3 + 1;
+  resGPA = 4 - ((toConvert - 1.0) / 3) * 2;
   resGPA = Math.round((resGPA + Number.EPSILON) * 1000) / 1000;
   pt4GPA.textContent = resGPA;
 }
