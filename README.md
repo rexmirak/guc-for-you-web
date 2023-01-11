@@ -1,4 +1,8 @@
-# guc-for-you-web https://rexmirak.github.io/guc-for-you-web/Home.html
+# guc-for-you-web
+
+An web app developed using nodejs and express that helps GUC's student calculate their course grades, components' grades, CGPA and what GPA to get to reach a certain CGPA
+
+https://rexmirak.github.io/guc-for-you-web/Home.html
 
 ![image](https://user-images.githubusercontent.com/87246131/211897487-dd38ee4c-b20e-442f-8521-803f2fd0267f.png)
 
